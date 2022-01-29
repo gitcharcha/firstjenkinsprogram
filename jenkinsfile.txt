@@ -1,1 +1,18 @@
-This is my first program.
+pipeline {
+    agent any
+    stages {
+        stage('ipconfig') {
+            steps {
+                timeout (time:1 , unit : 'MINUTES' ) {
+                    bat 'C:/ProgramData/Jenkins/.jenkins/Scripts/abc'
+                }
+            }
+        }
+        stage('nslookup') {
+            steps {
+                bat 'C:/ProgramData/Jenkins/.jenkins/Scripts/def'
+                
+            }
+        }
+    }
+}
