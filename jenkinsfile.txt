@@ -10,8 +10,9 @@ pipeline {
         }
         stage('nslookup') {
             steps {
+               timeout (time:1 , unit : 'MINUTES' ) {
                 bat 'C:/ProgramData/Jenkins/.jenkins/Scripts/def'
-                
+              }  
             }
         }
     }
