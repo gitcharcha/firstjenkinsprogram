@@ -4,14 +4,14 @@ pipeline {
         stage('ipconfig') {
             steps {
                 timeout (time:1 , unit : 'MINUTES' ) {
-                    bat 'C:/ProgramData/Jenkins/.jenkins/Scripts/filelist.bat'
+                    bat 'filelist.bat'
                 }
             }
         }
         stage('nslookup') {
             steps {
                timeout (time:1 , unit : 'MINUTES' ) {
-                bat 'C:/ProgramData/Jenkins/.jenkins/Scripts/Network.bat'
+                bat 'Network.bat'
               }  
             }
         }
