@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('ipconfig/all') {
+        stage('ipconfig') {
             steps {
                 timeout (time:1 , unit : 'MINUTES' ) {
                     bat 'C:/ProgramData/Jenkins/.jenkins/Scripts/filelist.bat'
