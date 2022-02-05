@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('ipconfig') {
             steps {
-                timeout (time:2 , unit : 'MINUTES' ) {
+                timeout (time:1 , unit : 'MINUTES' ) {
                     bat 'filelist.bat'
                 }
             }
