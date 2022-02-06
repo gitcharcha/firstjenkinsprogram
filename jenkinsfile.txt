@@ -1,19 +1,26 @@
 pipeline {
     agent any
-    stages {
-        stage('ipconfig') {
-            steps {
-                timeout (time:1 , unit : 'MINUTES' ) {
-                    bat 'filelist.bat'
-                }
-            }
-        }
-        stage('nslookup') {
-            steps {
-               timeout (time:1 , unit : 'MINUTES' ) {
-                bat 'Network.bat'
-              }  
-            }
-        }
-    }
+    parameters {
+        string(name: 'VmName', defaultValue: 'My-vm01', description: 'Vmname')
+}
+    parameters {
+        string(name: 'RgName', defaultValue: 'Newrg1', description: 'RGname')
+}
+    parameters {
+        string(name: 'Osimage', defaultValue: 'Win2012R2Datacenter', description: 'VmType')
+}
+Parameters {
+        string(name: 'Pubip', defaultValue: ' ', description: 'AssignPublicip')
+}
+Parameters {
+        string(name: 'username', defaultValue: 'Nwkings', description: 'Username')
+}
+Parameters {
+        string(name: 'password', defaultValue: 'Abcdef@12345', description: 'AssignPassword')
+}
+stage ( 'New Vm creation') {
+ steps {
+azureCLI commands: [[exportVariablesString: '', script: 'az vm create -n ${params.VmName} -g ${params.RgName} --public-ip-address ${params.Pubip} --image ${params.Osimage} --admin-username ${params.username} --admin-password ${params.password}']], principalCredentialId: '4afa8f7f-e34c-4a3f-81c8-2c0d57a97eba'
+}
+}
 }
